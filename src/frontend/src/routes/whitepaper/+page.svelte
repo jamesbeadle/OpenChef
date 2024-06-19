@@ -9,8 +9,8 @@
             <LogoIcon fill='#FFFFFF' className="w-6 mr-2" />
             <p class="text-xl">OpenChef Whitepaper</p>
         </div>
-        <div class="bg-OpenChefGreen w-full p-4 mt-4 rounded-lg border-solid border-BrandDarkGreen text-red border-2">
-            <b class="text-lg"><u>The Mission</u></b>
+        <div class="bg-OpenChefDarkPurple w-full p-4 mt-4 rounded-lg border-solid border-BrandDarkGreen text-red border-2">
+            <p>Coming soon.</p>
         </div>
     </div>
 </Layout>

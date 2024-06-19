@@ -3425,7 +3425,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "16mbmut"
+  version_hash: "1smx1g8"
 };
 async function get_hooks() {
   return {};
@@ -3642,7 +3642,7 @@ const Logo_icon = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   let { fill = "" } = $$props;
   if ($$props.className === void 0 && $$bindings.className && className !== void 0) $$bindings.className(className);
   if ($$props.fill === void 0 && $$bindings.fill && fill !== void 0) $$bindings.fill(fill);
-  return `<svg xmlns="http://www.w3.org/2000/svg"${add_attribute("class", className, 0)} fill="none" viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="#f2f2f2" stroke="#ccc" stroke-width="5"></circle><circle cx="100" cy="100" r="70" fill="#ffffff" stroke="#ccc" stroke-width="3"></circle><circle cx="100" cy="100" r="80" fill="none" stroke="#999" stroke-width="1"></circle><circle cx="100" cy="100" r="60" fill="none" stroke="#999" stroke-width="1"></circle></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg"${add_attribute("class", className, 0)} fill="none" viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="#f2f2f2" stroke="#332225" stroke-width="5"></circle><circle cx="100" cy="100" r="70" fill="#ffffff" stroke="#A61C35" stroke-width="3"></circle><circle cx="100" cy="100" r="80" fill="none" stroke="#662B36" stroke-width="1"></circle><circle cx="100" cy="100" r="60" fill="none" stroke="#731728" stroke-width="1"></circle></svg>`;
 });
 const core = {
   close: "Close",
@@ -3804,7 +3804,7 @@ const Menu_icon = create_ssr_component(($$result, $$props, $$bindings, slots) =>
 });
 const css = {
   code: "aside.svelte-4loizu{position:absolute;left:-500px;transition:all 0.5s;height:var(--sidebar-height);width:300px;display:flex;flex-direction:column;justify-content:space-between}aside.expanded.svelte-4loizu{left:0px}",
-  map: `{"version":3,"file":"Layout.svelte","sources":["Layout.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount, onDestroy } from \\"svelte\\";\\nimport { browser } from \\"$app/environment\\";\\nimport { initAuthWorker } from \\"$lib/services/worker.auth.services\\";\\nimport { authStore } from \\"$lib/stores/auth-store\\";\\nimport { BusyScreen, Spinner } from \\"@dfinity/gix-components\\";\\nimport { fade } from \\"svelte/transition\\";\\nimport LogoIcon from \\"$lib/icons/logo-icon.svelte\\";\\nimport \\"../app.css\\";\\nimport MenuIcon from \\"$lib/icons/menu-icon.svelte\\";\\nimport { authSignedInStore } from \\"$lib/derived/auth.derived\\";\\nimport { goto } from \\"$app/navigation\\";\\nlet expanded = false;\\nlet worker;\\nlet buttonHeight = 0;\\nlet sidebar;\\nlet heightSet = false;\\nconst init = async () => await Promise.all([syncAuthStore()]);\\n$: links = $authSignedInStore ? [\\n    { name: 'My Games', href: '/my-games' },\\n    { name: 'Profile', href: '/profile' },\\n    { name: 'Connect', href: '#' },\\n] :\\n    [\\n        { name: 'Connect', href: '#' },\\n    ];\\nlet lessImportantOptions = [\\n    { name: 'Whitepaper', href: '/whitepaper' }\\n];\\nconst syncAuthStore = async () => {\\n    if (!browser) {\\n        return;\\n    }\\n    try {\\n        await authStore.sync();\\n    }\\n    catch (err) {\\n        console.error(\\"Error syncing auth store\\", err);\\n    }\\n};\\nconst updateSidebarHeight = () => {\\n    if (heightSet) {\\n        return;\\n    }\\n    if (browser) {\\n        requestAnimationFrame(() => {\\n            const button = document.querySelector(\\".menu-row\\");\\n            if (button) {\\n                buttonHeight = button.clientHeight;\\n                const sidebarHeight = window.innerHeight - buttonHeight;\\n                document.documentElement.style.setProperty('--sidebar-height', \`\${sidebarHeight}px\`);\\n                heightSet = true;\\n            }\\n        });\\n    }\\n};\\nconst handleClickOutside = (event) => {\\n    updateSidebarHeight();\\n    if (browser && expanded && sidebar && !sidebar.contains(event.target)) {\\n        expanded = false;\\n    }\\n};\\nconst handleButtonClick = (event) => {\\n    event.stopPropagation();\\n    expanded = !expanded;\\n};\\nconst handleCloseButtonClick = (event) => {\\n    event.stopPropagation();\\n    expanded = false;\\n};\\nonMount(async () => {\\n    worker = await initAuthWorker();\\n    if (browser) {\\n        window.addEventListener('resize', updateSidebarHeight);\\n        document.addEventListener('click', handleClickOutside);\\n    }\\n    requestAnimationFrame(() => {\\n        updateSidebarHeight();\\n    });\\n});\\nonDestroy(() => {\\n    if (browser) {\\n        document.removeEventListener('click', handleClickOutside);\\n        window.removeEventListener('resize', updateSidebarHeight);\\n    }\\n});\\n$: worker, $authStore, (() => worker?.syncAuthIdle($authStore))();\\n$: (() => {\\n    if (!browser) {\\n        return;\\n    }\\n    if ($authStore === undefined) {\\n        return;\\n    }\\n    const spinner = document.querySelector(\\"body > #app-spinner\\");\\n    spinner?.remove();\\n})();\\nfunction handleLogin() {\\n    let params = {\\n        domain: import.meta.env.VITE_AUTH_PROVIDER_URL,\\n    };\\n    authStore.signIn(params);\\n}\\nfunction handleLogout() {\\n    authStore.signOut();\\n    goto(\\"/\\");\\n}\\n<\/script>\\n\\n<svelte:window on:storage={syncAuthStore} />\\n{#await init()}\\n  <div in:fade>\\n    <Spinner />\\n  </div>\\n{:then _}\\n  <div class=\\"menu-row flex items-center bg-BrandGreenBlue text-white w-full p-2\\">\\n    <button on:click={handleButtonClick} class=\\"flex items-center\\">\\n      <MenuIcon fill='#FFFFFF' className=\\"w-5 m-1\\" />\\n    </button>\\n    <div class=\\"ml-auto\\">\\n      <a class=\\"flex flex-row items-center ml-auto\\" href=\\"/\\">\\n        <p class=\\"text-sm mt-1\\">OpenChef</p>\\n        <LogoIcon fill='#FFFFFF' className=\\"w-6 mx-1\\" />\\n      </a>\\n    </div>\\n  </div>\\n\\n<aside class=\\"bg-BrandDarkGreen p-4\\" bind:this={sidebar} class:expanded={expanded}>\\n  <div class=\\"p-2\\">\\n    <div class=\\"p-2 flex justify-between items-center\\">\\n      <h2 class=\\"text-xl font-bold p-2\\">Options</h2>\\n      <button on:click={handleCloseButtonClick} class=\\"close-button\\">\\n        <svg xmlns=\\"http://www.w3.org/2000/svg\\" class=\\"h-6 w-6\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\">\\n          <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M15 19l-7-7 7-7\\" />\\n        </svg>\\n      </button>\\n    </div>\\n    \\n    <ul class=\\"mt-4 space-y-2\\">\\n      {#each links as option}\\n        <li>\\n          \\n          {#if option.name === 'Connect'}\\n\\n            {#if $authSignedInStore}\\n              <a href={option.href} class=\\"block rounded hover:bg-BrandLightGreen px-4 py-2\\" on:click={handleLogout}>Disconnect</a>\\n            {:else}\\n              <a href={option.href} class=\\"block rounded hover:bg-BrandLightGreen px-4 py-2\\" on:click={handleLogin}>Connect</a>\\n            {/if}\\n          {:else}\\n            <a href={option.href} class=\\"block rounded hover:bg-BrandLightGreen px-4 py-2\\">{option.name}</a>\\n          {/if}\\n        </li>\\n      {/each}\\n    </ul>\\n  </div>\\n  <div class=\\"less-important p-2\\">\\n    <div class=\\"horizontal-divider my-2\\" />\\n    <ul class=\\"space-y-2 text-xs\\">\\n      {#each lessImportantOptions as option}\\n        <li>\\n          <a href={option.href} class=\\"block rounded hover:bg-BrandLightGreen px-4 py-2\\">{option.name}</a>\\n        </li>\\n      {/each}\\n    </ul>\\n  </div>\\n</aside>\\n  <div class=\\"flex\\">\\n    <div class=\\"flex-1 p-4\\">\\n      <slot />\\n    </div>\\n  </div>\\n{/await}\\n\\n<BusyScreen />\\n\\n<style>\\n  aside {\\n    position: absolute;\\n    left: -500px;\\n    transition: all 0.5s;\\n    height: var(--sidebar-height);\\n    width: 300px;\\n    display: flex;\\n    flex-direction: column;\\n    justify-content: space-between;\\n  }\\n\\n  aside.expanded {\\n    left: 0px;\\n  }</style>\\n"],"names":[],"mappings":"AAgLE,mBAAM,CACJ,QAAQ,CAAE,QAAQ,CAClB,IAAI,CAAE,MAAM,CACZ,UAAU,CAAE,GAAG,CAAC,IAAI,CACpB,MAAM,CAAE,IAAI,gBAAgB,CAAC,CAC7B,KAAK,CAAE,KAAK,CACZ,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,eAAe,CAAE,aACnB,CAEA,KAAK,uBAAU,CACb,IAAI,CAAE,GACR"}`
+  map: `{"version":3,"file":"Layout.svelte","sources":["Layout.svelte"],"sourcesContent":["<script lang=\\"ts\\">import { onMount, onDestroy } from \\"svelte\\";\\nimport { browser } from \\"$app/environment\\";\\nimport { initAuthWorker } from \\"$lib/services/worker.auth.services\\";\\nimport { authStore } from \\"$lib/stores/auth-store\\";\\nimport { BusyScreen, Spinner } from \\"@dfinity/gix-components\\";\\nimport { fade } from \\"svelte/transition\\";\\nimport LogoIcon from \\"$lib/icons/logo-icon.svelte\\";\\nimport \\"../app.css\\";\\nimport MenuIcon from \\"$lib/icons/menu-icon.svelte\\";\\nimport { authSignedInStore } from \\"$lib/derived/auth.derived\\";\\nimport { goto } from \\"$app/navigation\\";\\nlet expanded = false;\\nlet worker;\\nlet buttonHeight = 0;\\nlet sidebar;\\nlet heightSet = false;\\nconst init = async () => await Promise.all([syncAuthStore()]);\\n$: links = $authSignedInStore ? [\\n    { name: 'My Recipes', href: '/my-recipes' },\\n    { name: 'Profile', href: '/profile' },\\n    { name: 'Connect', href: '#' },\\n] :\\n    [\\n        { name: 'Connect', href: '#' },\\n    ];\\nlet lessImportantOptions = [\\n    { name: 'Whitepaper', href: '/whitepaper' }\\n];\\nconst syncAuthStore = async () => {\\n    if (!browser) {\\n        return;\\n    }\\n    try {\\n        await authStore.sync();\\n    }\\n    catch (err) {\\n        console.error(\\"Error syncing auth store\\", err);\\n    }\\n};\\nconst updateSidebarHeight = () => {\\n    if (heightSet) {\\n        return;\\n    }\\n    if (browser) {\\n        requestAnimationFrame(() => {\\n            const button = document.querySelector(\\".menu-row\\");\\n            if (button) {\\n                buttonHeight = button.clientHeight;\\n                const sidebarHeight = window.innerHeight - buttonHeight;\\n                document.documentElement.style.setProperty('--sidebar-height', \`\${sidebarHeight}px\`);\\n                heightSet = true;\\n            }\\n        });\\n    }\\n};\\nconst handleClickOutside = (event) => {\\n    updateSidebarHeight();\\n    if (browser && expanded && sidebar && !sidebar.contains(event.target)) {\\n        expanded = false;\\n    }\\n};\\nconst handleButtonClick = (event) => {\\n    event.stopPropagation();\\n    expanded = !expanded;\\n};\\nconst handleCloseButtonClick = (event) => {\\n    event.stopPropagation();\\n    expanded = false;\\n};\\nonMount(async () => {\\n    worker = await initAuthWorker();\\n    if (browser) {\\n        window.addEventListener('resize', updateSidebarHeight);\\n        document.addEventListener('click', handleClickOutside);\\n    }\\n    requestAnimationFrame(() => {\\n        updateSidebarHeight();\\n    });\\n});\\nonDestroy(() => {\\n    if (browser) {\\n        document.removeEventListener('click', handleClickOutside);\\n        window.removeEventListener('resize', updateSidebarHeight);\\n    }\\n});\\n$: worker, $authStore, (() => worker?.syncAuthIdle($authStore))();\\n$: (() => {\\n    if (!browser) {\\n        return;\\n    }\\n    if ($authStore === undefined) {\\n        return;\\n    }\\n    const spinner = document.querySelector(\\"body > #app-spinner\\");\\n    spinner?.remove();\\n})();\\nfunction handleLogin() {\\n    let params = {\\n        domain: import.meta.env.VITE_AUTH_PROVIDER_URL,\\n    };\\n    authStore.signIn(params);\\n}\\nfunction handleLogout() {\\n    authStore.signOut();\\n    goto(\\"/\\");\\n}\\n<\/script>\\n\\n<svelte:window on:storage={syncAuthStore} />\\n{#await init()}\\n  <div in:fade>\\n    <Spinner />\\n  </div>\\n{:then _}\\n  <div class=\\"menu-row flex items-center bg-OpenChefRed text-white w-full p-2\\">\\n    <button on:click={handleButtonClick} class=\\"flex items-center\\">\\n      <MenuIcon fill='#FFFFFF' className=\\"w-5 m-1\\" />\\n    </button>\\n    <div class=\\"ml-auto\\">\\n      <a class=\\"flex flex-row items-center ml-auto\\" href=\\"/\\">\\n        <p class=\\"text-sm mt-1\\">OpenChef</p>\\n        <LogoIcon fill='#FFFFFF' className=\\"w-6 mx-1\\" />\\n      </a>\\n    </div>\\n  </div>\\n\\n<aside class=\\"bg-OpenChefDarkRed p-4\\" bind:this={sidebar} class:expanded={expanded}>\\n  <div class=\\"p-2\\">\\n    <div class=\\"p-2 flex justify-between items-center\\">\\n      <h2 class=\\"text-xl font-bold p-2\\">Options</h2>\\n      <button on:click={handleCloseButtonClick} class=\\"close-button\\">\\n        <svg xmlns=\\"http://www.w3.org/2000/svg\\" class=\\"h-6 w-6\\" fill=\\"none\\" viewBox=\\"0 0 24 24\\" stroke=\\"currentColor\\">\\n          <path stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" stroke-width=\\"2\\" d=\\"M15 19l-7-7 7-7\\" />\\n        </svg>\\n      </button>\\n    </div>\\n    \\n    <ul class=\\"mt-4 space-y-2\\">\\n      {#each links as option}\\n        <li>\\n          \\n          {#if option.name === 'Connect'}\\n\\n            {#if $authSignedInStore}\\n              <a href={option.href} class=\\"block rounded hover:bg-OpenChefDarkPurple px-4 py-2\\" on:click={handleLogout}>Disconnect</a>\\n            {:else}\\n              <a href={option.href} class=\\"block rounded hover:bg-OpenChefDarkPurple px-4 py-2\\" on:click={handleLogin}>Connect</a>\\n            {/if}\\n          {:else}\\n            <a href={option.href} class=\\"block rounded hover:bg-OpenChefDarkPurple px-4 py-2\\">{option.name}</a>\\n          {/if}\\n        </li>\\n      {/each}\\n    </ul>\\n  </div>\\n  <div class=\\"less-important p-2\\">\\n    <div class=\\"horizontal-divider my-2\\" />\\n    <ul class=\\"space-y-2 text-xs\\">\\n      {#each lessImportantOptions as option}\\n        <li>\\n          <a href={option.href} class=\\"block rounded hover:bg-OpenChefDarkPurple px-4 py-2\\">{option.name}</a>\\n        </li>\\n      {/each}\\n    </ul>\\n  </div>\\n</aside>\\n  <div class=\\"flex\\">\\n    <div class=\\"flex-1 p-4\\">\\n      <slot />\\n    </div>\\n  </div>\\n{/await}\\n\\n<BusyScreen />\\n\\n<style>\\n  aside {\\n    position: absolute;\\n    left: -500px;\\n    transition: all 0.5s;\\n    height: var(--sidebar-height);\\n    width: 300px;\\n    display: flex;\\n    flex-direction: column;\\n    justify-content: space-between;\\n  }\\n\\n  aside.expanded {\\n    left: 0px;\\n  }</style>\\n"],"names":[],"mappings":"AAgLE,mBAAM,CACJ,QAAQ,CAAE,QAAQ,CAClB,IAAI,CAAE,MAAM,CACZ,UAAU,CAAE,GAAG,CAAC,IAAI,CACpB,MAAM,CAAE,IAAI,gBAAgB,CAAC,CAC7B,KAAK,CAAE,KAAK,CACZ,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,eAAe,CAAE,aACnB,CAEA,KAAK,uBAAU,CACb,IAAI,CAAE,GACR"}`
 };
 const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let links;
@@ -3824,7 +3824,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   });
   $$result.css.add(css);
   links = $authSignedInStore ? [
-    { name: "My Games", href: "/my-games" },
+    { name: "My Recipes", href: "/my-recipes" },
     { name: "Profile", href: "/profile" },
     { name: "Connect", href: "#" }
   ] : [{ name: "Connect", href: "#" }];
@@ -3836,37 +3836,25 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return ` <div>${validate_component(Spinner, "Spinner").$$render($$result, {}, {}, {})}</div> `;
     }
     return function(_) {
-      return ` <div class="menu-row flex items-center bg-BrandGreenBlue text-white w-full p-2"><button class="flex items-center">${validate_component(Menu_icon, "MenuIcon").$$render($$result, { fill: "#FFFFFF", className: "w-5 m-1" }, {}, {})}</button> <div class="ml-auto"><a class="flex flex-row items-center ml-auto" href="/"><p class="text-sm mt-1" data-svelte-h="svelte-1sdudfk">OpenChef</p> ${validate_component(Logo_icon, "LogoIcon").$$render($$result, { fill: "#FFFFFF", className: "w-6 mx-1" }, {}, {})}</a></div></div> <aside class="${["bg-BrandDarkGreen p-4 svelte-4loizu", ""].join(" ").trim()}"${add_attribute("this", sidebar, 0)}><div class="p-2"><div class="p-2 flex justify-between items-center"><h2 class="text-xl font-bold p-2" data-svelte-h="svelte-1yxjhcx">Options</h2> <button class="close-button" data-svelte-h="svelte-8sut70"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button></div> <ul class="mt-4 space-y-2">${each(links, (option) => {
-        return `<li>${option.name === "Connect" ? `${$authSignedInStore ? `<a${add_attribute("href", option.href, 0)} class="block rounded hover:bg-BrandLightGreen px-4 py-2">Disconnect</a>` : `<a${add_attribute("href", option.href, 0)} class="block rounded hover:bg-BrandLightGreen px-4 py-2">Connect</a>`}` : `<a${add_attribute("href", option.href, 0)} class="block rounded hover:bg-BrandLightGreen px-4 py-2">${escape(option.name)}</a>`} </li>`;
+      return ` <div class="menu-row flex items-center bg-OpenChefRed text-white w-full p-2"><button class="flex items-center">${validate_component(Menu_icon, "MenuIcon").$$render($$result, { fill: "#FFFFFF", className: "w-5 m-1" }, {}, {})}</button> <div class="ml-auto"><a class="flex flex-row items-center ml-auto" href="/"><p class="text-sm mt-1" data-svelte-h="svelte-1sdudfk">OpenChef</p> ${validate_component(Logo_icon, "LogoIcon").$$render($$result, { fill: "#FFFFFF", className: "w-6 mx-1" }, {}, {})}</a></div></div> <aside class="${["bg-OpenChefDarkRed p-4 svelte-4loizu", ""].join(" ").trim()}"${add_attribute("this", sidebar, 0)}><div class="p-2"><div class="p-2 flex justify-between items-center"><h2 class="text-xl font-bold p-2" data-svelte-h="svelte-1yxjhcx">Options</h2> <button class="close-button" data-svelte-h="svelte-8sut70"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button></div> <ul class="mt-4 space-y-2">${each(links, (option) => {
+        return `<li>${option.name === "Connect" ? `${$authSignedInStore ? `<a${add_attribute("href", option.href, 0)} class="block rounded hover:bg-OpenChefDarkPurple px-4 py-2">Disconnect</a>` : `<a${add_attribute("href", option.href, 0)} class="block rounded hover:bg-OpenChefDarkPurple px-4 py-2">Connect</a>`}` : `<a${add_attribute("href", option.href, 0)} class="block rounded hover:bg-OpenChefDarkPurple px-4 py-2">${escape(option.name)}</a>`} </li>`;
       })}</ul></div> <div class="less-important p-2"><div class="horizontal-divider my-2"></div> <ul class="space-y-2 text-xs">${each(lessImportantOptions, (option) => {
-        return `<li><a${add_attribute("href", option.href, 0)} class="block rounded hover:bg-BrandLightGreen px-4 py-2">${escape(option.name)}</a> </li>`;
+        return `<li><a${add_attribute("href", option.href, 0)} class="block rounded hover:bg-OpenChefDarkPurple px-4 py-2">${escape(option.name)}</a> </li>`;
       })}</ul></div></aside> <div class="flex"><div class="flex-1 p-4">${slots.default ? slots.default({}) : ``}</div></div> `;
     }();
   }(init2())} ${validate_component(BusyScreen, "BusyScreen").$$render($$result, {}, {}, {})}`;
 });
-const Page$9 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+const Page$3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${validate_component(Layout, "Layout").$$render($$result, {}, {}, {
     default: () => {
-      return `<div class="p-4"><div class="flex flex-row items-center"><p class="text-2xl mt-1" data-svelte-h="svelte-10v9dnj">Welcome to OpenChef</p> ${validate_component(Logo_icon, "LogoIcon").$$render($$result, { fill: "#FFFFFF", className: "w-96 ml-2" }, {}, {})}</div> <p class="my-2" data-svelte-h="svelte-kfzah6">Enhance your social golfing experience.</p> <a href="/whitepaper" data-svelte-h="svelte-17v3e7h"><button class="bg-Brand2e my-2 px-4 py-2 text-BrandBlue rounded-md">Whitepaper</button></a></div>`;
+      return `<div class="p-4"><div class="flex flex-row items-center"><p class="text-2xl mt-1" data-svelte-h="svelte-10v9dnj">Welcome to OpenChef</p> ${validate_component(Logo_icon, "LogoIcon").$$render($$result, { fill: "#FFFFFF", className: "w-12 ml-2" }, {}, {})}</div> <p class="my-2" data-svelte-h="svelte-yxdkz4">Build your own cooking community.</p> <a href="/whitepaper" data-svelte-h="svelte-6i6sc1"><button class="bg-OpenChefMauve my-2 px-4 py-2 text-white rounded-md">Whitepaper</button></a></div>`;
     }
   })}`;
 });
-const Page$8 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return ``;
-});
-const Page$7 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return ``;
-});
-const Page$6 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return ``;
-});
-const Page$5 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return ``;
-});
-const Page$4 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+const Page$2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${validate_component(Layout, "Layout").$$render($$result, {}, {}, {
     default: () => {
-      return `<div class="p-4"><div class="flex flex-col bg-BrandGold rounded-md rounded-b-lg border border-BrandBlue"><div class="flex flex-row items-center px-4 border-b border-b-BrandGreen justify-between"><div class="flex items-center">${validate_component(Logo_icon, "LogoIcon").$$render(
+      return `<div class="p-4"><div class="flex flex-col bg-OpenChefDarkPurple rounded-md rounded-b-lg border border-OpenChefDarkPurple"><div class="flex flex-row items-center px-4 border-b border-b-OpenChefDarkPurple justify-between"><div class="flex items-center">${validate_component(Logo_icon, "LogoIcon").$$render(
         $$result,
         {
           fill: "#FFFFFF",
@@ -3874,34 +3862,28 @@ const Page$4 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         },
         {},
         {}
-      )} <p class="text-base text-BrandBlue" data-svelte-h="svelte-1143thu">My Games</p></div> <button class="btn-add my-2" data-svelte-h="svelte-qnor2o">New Game</button></div> <div class="w-full bg-BrandDeepGreen p-4 rounded-b-md flex flex-col text-sm" data-svelte-h="svelte-1j7j9xp"><div class="flex flex-row space-x-2"><div class="w-1/12"><p>Date</p></div> <div class="w-2/12"><p>Game</p></div> <div class="w-3/12"><p>Course</p></div> <div class="w-4/12"><p>Players</p></div> <div class="w-1/12"><p>Result</p></div> <div class="w-1/12"><p></p></div></div> <div class="horizontal-divider my-2"></div> <div class="flex flex-row text-sm space-x-2 items-center"><div class="w-1/12"><p>25/06/2024</p></div> <div class="w-2/12"><p>Bands</p></div> <div class="w-3/12"><p>Leathearhead Golf Club</p></div> <div class="w-4/12"><p>J. Beadle (18), K. Howlett (18), G. Beadle (21), G. Robinson (28)</p></div> <div class="w-1/12"><p>Unplayed</p></div> <div class="w-1/12 flex flex-col items-center"><button class="btn-view">View</button></div></div> <div class="horizontal-divider my-2"></div></div></div></div>`;
+      )} <p class="text-base text-OpenChefDarkPurple" data-svelte-h="svelte-354d6b">My Games</p></div> <button class="btn-add my-2" data-svelte-h="svelte-473e9w">New Recipe</button></div> <div class="w-full bg-OpenChefDarkPurple p-4 rounded-b-md flex flex-col text-sm" data-svelte-h="svelte-19spqe8"><div class="horizontal-divider my-2"></div> <div class="flex flex-row text-sm space-x-2 items-center"><p>Coming soon.</p></div> <div class="horizontal-divider my-2"></div></div></div></div>`;
     }
   })}`;
 });
-const Page$3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+const Page$1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${validate_component(Layout, "Layout").$$render($$result, {}, {}, {
     default: () => {
       return `<div class="p-4"><div class="flex flex-row items-center">${validate_component(Logo_icon, "LogoIcon").$$render($$result, { fill: "#FFFFFF", className: "w-6 mr-2" }, {}, {})} <p class="text-xl" data-svelte-h="svelte-14za60w">Profile Coming Soon</p></div></div>`;
     }
   })}`;
 });
-const Page$2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return ``;
-});
-const Page$1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return ``;
-});
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${validate_component(Layout, "Layout").$$render($$result, {}, {}, {
     default: () => {
-      return `<div class="p-4"><div class="flex flex-row items-center">${validate_component(Logo_icon, "LogoIcon").$$render($$result, { fill: "#FFFFFF", className: "w-6 mr-2" }, {}, {})} <p class="text-xl" data-svelte-h="svelte-355sjm">OpenChef Whitepaper</p></div> <div class="bg-BrandGreen w-full p-4 mt-4 rounded-lg border-solid border-BrandDarkGreen text-Brand2 border-2" data-svelte-h="svelte-d21766"><b class="text-lg"><u>The Mission</u></b></div></div>`;
+      return `<div class="p-4"><div class="flex flex-row items-center">${validate_component(Logo_icon, "LogoIcon").$$render($$result, { fill: "#FFFFFF", className: "w-6 mr-2" }, {}, {})} <p class="text-xl" data-svelte-h="svelte-355sjm">OpenChef Whitepaper</p></div> <div class="bg-OpenChefDarkPurple w-full p-4 mt-4 rounded-lg border-solid border-BrandDarkGreen text-red border-2" data-svelte-h="svelte-1mbevkc"><p>Coming soon.</p></div></div>`;
     }
   })}`;
 });
 export {
   Error$1 as E,
   Layout$1 as L,
-  Page$9 as P,
+  Page$3 as P,
   Server as S,
   set_building as a,
   set_manifest as b,
@@ -3911,15 +3893,9 @@ export {
   set_read_implementation as f,
   get_hooks as g,
   set_safe_public_env as h,
-  Page$8 as i,
-  Page$7 as j,
-  Page$6 as k,
-  Page$5 as l,
-  Page$4 as m,
-  Page$3 as n,
+  Page$2 as i,
+  Page$1 as j,
+  Page as k,
   options as o,
-  Page$2 as p,
-  Page$1 as q,
-  Page as r,
   set_assets as s
 };

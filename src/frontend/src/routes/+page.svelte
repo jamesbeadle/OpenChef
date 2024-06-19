@@ -16,7 +16,7 @@ import Layout from "./Layout.svelte";
     <div class="p-4">
         <div class="flex flex-row items-center">
             <p class="text-2xl mt-1">Welcome to OpenChef</p>
-            <LogoIcon fill='#FFFFFF' className="w-6 ml-2" />
+            <LogoIcon fill='#FFFFFF' className="w-12 ml-2" />
         </div>
         <p class="my-2">Build your own cooking community.</p>
         <a href="/whitepaper">

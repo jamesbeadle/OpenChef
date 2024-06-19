@@ -8,56 +8,19 @@
 </script>
 <Layout>    
     <div class="p-4">
-        <div class="flex flex-col bg-OpenChefGreen rounded-md rounded-b-lg border border-OpenChefGreen">
-            <div class="flex flex-row items-center px-4 border-b border-b-OpenChefGreen justify-between">
+        <div class="flex flex-col bg-OpenChefDarkPurple rounded-md rounded-b-lg border border-OpenChefDarkPurple">
+            <div class="flex flex-row items-center px-4 border-b border-b-OpenChefDarkPurple justify-between">
                 <div class="flex items-center">
                     <LogoIcon fill='#FFFFFF' className="w-8 mr-2 my-2" />
-                    <p class="text-base text-OpenChefGreen">My Games</p>
+                    <p class="text-base text-OpenChefDarkPurple">My Games</p>
                 </div>
-                <button class="btn-add my-2">New Game</button>
+                <button class="btn-add my-2">New Recipe</button>
             </div>
             
-            <div class="w-full bg-OpenChefGreen p-4 rounded-b-md flex flex-col text-sm">
-                <div class="flex flex-row space-x-2">
-                    <div class="w-1/12">
-                        <p>Date</p>
-                    </div>
-                    <div class="w-2/12">
-                        <p>Game</p>
-                    </div>
-                    <div class="w-3/12">
-                        <p>Course</p>
-                    </div>
-                    <div class="w-4/12">
-                        <p>Players</p>
-                    </div>
-                    <div class="w-1/12">
-                        <p>Result</p>
-                    </div>
-                    <div class="w-1/12">
-                        <p></p>
-                    </div>
-                </div>
+            <div class="w-full bg-OpenChefDarkPurple p-4 rounded-b-md flex flex-col text-sm">
                 <div class="horizontal-divider my-2" />
                 <div class="flex flex-row text-sm space-x-2 items-center">
-                    <div class="w-1/12">
-                        <p>25/06/2024</p>
-                    </div>
-                    <div class="w-2/12">
-                        <p>Bands</p>
-                    </div>
-                    <div class="w-3/12">
-                        <p>Leathearhead Golf Club</p>
-                    </div>
-                    <div class="w-4/12">
-                        <p>J. Beadle (18), K. Howlett (18), G. Beadle (21), G. Robinson (28)</p>
-                    </div>
-                    <div class="w-1/12">
-                        <p>Unplayed</p>
-                    </div>
-                    <div class="w-1/12 flex flex-col items-center">
-                        <button class="btn-view">View</button>
-                    </div>
+                    <p>Coming soon.</p>
                 </div>
                 <div class="horizontal-divider my-2" />
             </div>

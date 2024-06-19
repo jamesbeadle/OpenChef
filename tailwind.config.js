@@ -46,7 +46,7 @@ export default {
         OpenChefGreen: "#1CA635",
         OpenChefMauve: "#662B36",
         OpenChefDarkGreen: "#295130",
-        OpenChefDarkPurple: "#332225"
+        OpenChefDarkPurple: "#332225",
       },
     },
   },

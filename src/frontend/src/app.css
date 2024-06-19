@@ -120,9 +120,9 @@ input {
 }
 
 .btn-view {
-  @apply bg-OpenChefGreen px-4 py-2 rounded-md border border-OpenChefGreen;
+  @apply bg-OpenChefDarkPurple px-4 py-2 rounded-md border border-OpenChefDarkPurple;
 }
 
 .btn-add {
-  @apply bg-OpenChefGreen px-4 py-2 rounded-md border border-OpenChefGreen;
+  @apply bg-OpenChefDarkPurple px-4 py-2 rounded-md border border-OpenChefDarkPurple;
 }

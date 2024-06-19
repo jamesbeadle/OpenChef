@@ -163,12 +163,12 @@
           {#if option.name === 'Connect'}
 
             {#if $authSignedInStore}
-              <a href={option.href} class="block rounded hover:bg-OpenChefGreen px-4 py-2" on:click={handleLogout}>Disconnect</a>
+              <a href={option.href} class="block rounded hover:bg-OpenChefDarkPurple px-4 py-2" on:click={handleLogout}>Disconnect</a>
             {:else}
-              <a href={option.href} class="block rounded hover:bg-OpenChefGreen px-4 py-2" on:click={handleLogin}>Connect</a>
+              <a href={option.href} class="block rounded hover:bg-OpenChefDarkPurple px-4 py-2" on:click={handleLogin}>Connect</a>
             {/if}
           {:else}
-            <a href={option.href} class="block rounded hover:bg-OpenChefGreen px-4 py-2">{option.name}</a>
+            <a href={option.href} class="block rounded hover:bg-OpenChefDarkPurple px-4 py-2">{option.name}</a>
           {/if}
         </li>
       {/each}
@@ -179,7 +179,7 @@
     <ul class="space-y-2 text-xs">
       {#each lessImportantOptions as option}
         <li>
-          <a href={option.href} class="block rounded hover:bg-OpenChefGreen px-4 py-2">{option.name}</a>
+          <a href={option.href} class="block rounded hover:bg-OpenChefDarkPurple px-4 py-2">{option.name}</a>
         </li>
       {/each}
     </ul>
