@@ -13,7 +13,7 @@ import Layout from "./Layout.svelte";
     }
 </script>
 <Layout>    
-    <div class="p-4">
+    <div class="p-4 bg-OpenChefRed rounded-md">
         <div class="flex flex-row items-center">
             <p class="text-2xl mt-1">Welcome to OpenChef</p>
             <LogoIcon fill='#FFFFFF' className="w-12 ml-2" />
