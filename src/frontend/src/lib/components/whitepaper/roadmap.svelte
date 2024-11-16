@@ -2,6 +2,7 @@
   <h1 class="text-2xl">Roadmap</h1>
     
   <p>
-      Coming soon.
+      2024: Continuing development, scoping and testing of OpenChef with input from the cooking community.
   </p>
+
 </div>

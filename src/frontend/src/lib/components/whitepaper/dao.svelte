@@ -2,7 +2,6 @@
     <h1 class="text-2xl">The OpenChef DAO</h1>
     
     <p>
-        Coming soon.
+        The team will focus on developing the product and growing the user base until decentralising the product is viable.
     </p>
-
 </div>

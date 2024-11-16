@@ -3,6 +3,6 @@
     
     
     <p>
-        Coming soon.
+        We are in the process of identifying the best multi-canister architecture for OpenChef and more information will be released soon.
     </p>
 </div>

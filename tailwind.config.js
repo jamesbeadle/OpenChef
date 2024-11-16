@@ -39,7 +39,7 @@ export default {
     extend: {
       colors: {
         OpenChefDarkRed: "#731728",
-        OpenChefRed: "#A61C35",
+        OpenChefRed: "#F55454",
         OpenChefPink: "#8C5862",
         OpenChefLightGreen: "#A8BF75",
         OpenChefGray: "#BFBFBD",

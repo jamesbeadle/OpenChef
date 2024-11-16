@@ -19,8 +19,11 @@ import Layout from "./Layout.svelte";
             <LogoIcon fill='#FFFFFF' className="w-12 ml-2" />
         </div>
         <p class="my-2">Build your own cooking community.</p>
+        <!--
         <a href="/whitepaper">
             <button class="bg-OpenChefMauve my-2 px-4 py-2 text-white rounded-md">Whitepaper</button>
         </a>
+        -->
+
     </div>
 </Layout>
